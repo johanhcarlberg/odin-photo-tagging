@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../styles/GameBoard.css";
 
 const GameBoard = ({ image }) => {
+    const [mousePos, setMousePos] = useState(null);
+
     useEffect(() => {
         const loadImage = () => {
             const tempImg = new Image();
@@ -11,6 +13,10 @@ const GameBoard = ({ image }) => {
         loadImage();
     }, [image]);
 
+    const updateMousePos = (e) => {
+        setMousePos({x: e.clientX, y: e.clientY});
+    }
+
     return (
         <div className="game-board">
             <div
@@ -18,7 +24,9 @@ const GameBoard = ({ image }) => {
                 style={{
                     backgroundImage: image && `url(images/${image.imageName})`,
                 }}
-            ></div>
+                onMouseMove={updateMousePos}
+            >
+            </div>
         </div>
     );
 };
