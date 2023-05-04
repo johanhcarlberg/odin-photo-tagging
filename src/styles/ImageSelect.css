@@ -1,0 +1,8 @@
+.image-select {
+    display: grid;
+    padding: 2rem;
+    justify-self: center;
+    width: 40rem;
+    grid-template-rows: auto 1fr;
+    box-sizing: border-box;
+}
