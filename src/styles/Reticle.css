@@ -5,6 +5,7 @@
     height: 5rem;
     border-radius: 100%;
     display: grid;
+    pointer-events: none;
 }
 
 .reticle-inner {
