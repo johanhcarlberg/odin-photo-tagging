@@ -41,6 +41,8 @@ const GameBoard = ({ image }) => {
             >
                 {showReticle && <Reticle x={mousePos.x} y={mousePos.y}/>}
             </div>
+            <div className="game-board-objectives">
+                <h3>Objectives</h3>
             </div>
         </div>
     );
