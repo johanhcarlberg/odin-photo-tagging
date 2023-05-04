@@ -1,0 +1,17 @@
+.reticle {
+    position: fixed;
+    border: 2px solid red;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    display: grid;
+}
+
+.reticle-inner {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+    background-color: rgba(0,0,0, 0.2);
+    align-self: center;
+    justify-self: center;
+}
