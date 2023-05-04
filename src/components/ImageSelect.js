@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { db } from '../firebase';
-import '../styles/ImageSelector.css';
+import '../styles/ImageSelect.css';
 import { collection, getDocs } from 'firebase/firestore';
+import ImageSelector from './ImageSelector';
 
-const ImageSelect = () => {
+const ImageSelect = ({onConfirm}) => {
     const [images, setImages] = useState([]);
 
     const loadImages = async () => {
@@ -18,15 +19,13 @@ const ImageSelect = () => {
 
     useEffect(() => {
         loadImages();
-    });
+    }, []);
 
     return (
-        <div className='image-selector-wrapper'>
-            <div className='image-selector'>
-            <h1>Images</h1>
-            
+            <div className='image-select'>
+            <h1>Select Image</h1>
+                <ImageSelector onConfirm={onConfirm} images={images} />
             </div>
-        </div>
     )
 }
 
