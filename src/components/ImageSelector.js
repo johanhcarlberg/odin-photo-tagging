@@ -64,9 +64,14 @@ const ImageSelector = ({images, onConfirm}) => {
         }
 
         if (images.length > 0) {
-            setCurrentImage(images[0]);
+            setCurrentImage(
+                {
+                    ...images[0],
+                    index: 0
+                }
+            );
         }
-    });
+    }, [images]);
     return (
         <div className="image-selector">
             <button 
