@@ -21,7 +21,7 @@ const ObjectivesList = ({image}) => {
 
     useEffect(() => {
         getObjectives();
-    }, []);
+    }, [image]);
 
     return (
         <div className="objectives">
