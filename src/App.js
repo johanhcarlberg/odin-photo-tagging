@@ -1,11 +1,12 @@
+import { HashRouter } from 'react-router-dom';
 import './App.css';
 import ImageSelect from './components/ImageSelect';
+import Game from './components/Game';
 
 function App() {
   return (
     <div className="App">
-      <h1>Photo Tagging</h1>
-      <ImageSelect />
+      <Game />
     </div>
   );
 }
