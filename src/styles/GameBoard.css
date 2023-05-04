@@ -1,5 +1,7 @@
 .game-board {
     display: grid;
+    cursor: default;
+    grid-template-rows: 1fr auto;
 }
 
 .game-board-image {
@@ -7,4 +9,5 @@
     background-clip: content-box;
     background-repeat: no-repeat;
     background-size: contain;
+    cursor: none;
 }
