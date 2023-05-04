@@ -3,7 +3,8 @@ import "../styles/GameBoard.css";
 import Reticle from "./Reticle";
 
 const GameBoard = ({ image }) => {
-    const [mousePos, setMousePos] = useState(null);
+    const [showReticle, setShowReticle] = useState(true);
+    const [mousePos, setMousePos] = useState({x: 0, y: 0});
 
     useEffect(() => {
         const loadImage = () => {
@@ -18,6 +19,15 @@ const GameBoard = ({ image }) => {
         setMousePos({x: e.clientX, y: e.clientY});
     }
 
+    const hideReticle = () => {
+        console.log('hide reticle');
+        setShowReticle(false);
+    }
+
+    const unhideReticle = () => {
+        setShowReticle(true);
+    }
+
     return (
         <div className="game-board">
             <div
@@ -26,8 +36,11 @@ const GameBoard = ({ image }) => {
                     backgroundImage: image && `url(images/${image.imageName})`,
                 }}
                 onMouseMove={updateMousePos}
+                onMouseLeave={hideReticle}
+                onMouseEnter={unhideReticle}
             >
-                {mousePos && <Reticle x={mousePos.x} y={mousePos.y}/>}
+                {showReticle && <Reticle x={mousePos.x} y={mousePos.y}/>}
+            </div>
             </div>
         </div>
     );
