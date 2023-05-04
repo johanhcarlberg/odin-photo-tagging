@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/GameBoard.css";
+import Reticle from "./Reticle";
 
 const GameBoard = ({ image }) => {
     const [mousePos, setMousePos] = useState(null);
@@ -26,6 +27,7 @@ const GameBoard = ({ image }) => {
                 }}
                 onMouseMove={updateMousePos}
             >
+                {mousePos && <Reticle x={mousePos.x} y={mousePos.y}/>}
             </div>
         </div>
     );
