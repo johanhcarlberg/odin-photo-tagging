@@ -7,7 +7,7 @@ import ObjectivePicker from "./ObjectivePicker";
 
 const GameBoard = ({ image }) => {
     const [showReticle, setShowReticle] = useState(true);
-    const [mousePos, setMousePos] = useState({x: 0, y: 0});
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [showObjectivePicker, setShowObjectivePicker] = useState(false);
 
     useEffect(() => {
@@ -21,18 +21,22 @@ const GameBoard = ({ image }) => {
 
     const updateMousePos = (e) => {
         if (!showObjectivePicker) {
-            setMousePos({x: e.clientX, y: e.clientY});
+            setMousePos({ x: e.clientX, y: e.clientY });
         }
-    }
+    };
 
     const hideReticle = () => {
-        console.log('hide reticle');
+        console.log("hide reticle");
         setShowReticle(false);
-    }
+    };
 
     const unhideReticle = () => {
         setShowReticle(true);
-    }
+    };
+
+    const onObjectivePick = (objective) => {
+        console.log(objective);
+    };
 
     const objectives = useObjectives(image);
 
@@ -42,15 +46,21 @@ const GameBoard = ({ image }) => {
                 className="game-board-image"
                 style={{
                     backgroundImage: image && `url(images/${image.imageName})`,
-                    cursor: showObjectivePicker && 'default',
+                    cursor: showObjectivePicker && "default",
                 }}
                 onMouseMove={updateMousePos}
                 onMouseLeave={hideReticle}
                 onMouseEnter={unhideReticle}
                 onClick={() => setShowObjectivePicker(!showObjectivePicker)}
             >
-                {(showReticle) && <Reticle x={mousePos.x} y={mousePos.y}/>}
-                {showObjectivePicker && <ObjectivePicker objectives={objectives} position={mousePos}/>}
+                {showReticle && <Reticle x={mousePos.x} y={mousePos.y} />}
+                {showObjectivePicker && (
+                    <ObjectivePicker
+                        objectives={objectives}
+                        position={mousePos}
+                        onObjectivePick={onObjectivePick}
+                    />
+                )}
             </div>
             <div className="game-board-objectives">
                 <ObjectivesList objectives={objectives} />
