@@ -3,25 +3,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import '../styles/ObjectivesList.css';
 
-const ObjectivesList = ({image}) => {
-    const [objectives, setObjectives] = useState([]);
-    
-    const getObjectives = async () => {
-        try {
-            const objectivesRef = collection(db, 'images', image.name, 'objectives');
-            const querySnapshot = await getDocs(objectivesRef);
-            const objectivesData = querySnapshot.docs.map(doc => doc.data());
-            setObjectives(objectivesData);
-            console.log(objectivesData);
-            
-        } catch (error) {
-            console.error('Error retrieving objectives', error);
-        }
-    }
-
-    useEffect(() => {
-        getObjectives();
-    }, [image]);
+const ObjectivesList = ({objectives}) => {
 
     return (
         <div className="objectives">
