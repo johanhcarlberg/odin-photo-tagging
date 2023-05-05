@@ -8,6 +8,8 @@
     background-position: center center;
     background-clip: content-box;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     cursor: none;
+    width: 800px;
+    justify-self: center;
 }
