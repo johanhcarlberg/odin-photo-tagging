@@ -20,7 +20,9 @@ const GameBoard = ({ image }) => {
     }, [image]);
 
     const updateMousePos = (e) => {
-        setMousePos({x: e.clientX, y: e.clientY});
+        if (!showObjectivePicker) {
+            setMousePos({x: e.clientX, y: e.clientY});
+        }
     }
 
     const hideReticle = () => {
@@ -47,7 +49,7 @@ const GameBoard = ({ image }) => {
                 onMouseEnter={unhideReticle}
                 onClick={() => setShowObjectivePicker(!showObjectivePicker)}
             >
-                {(showReticle && !showObjectivePicker) && <Reticle x={mousePos.x} y={mousePos.y}/>}
+                {(showReticle) && <Reticle x={mousePos.x} y={mousePos.y}/>}
                 {showObjectivePicker && <ObjectivePicker objectives={objectives} position={mousePos}/>}
             </div>
             <div className="game-board-objectives">
