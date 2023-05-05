@@ -1,0 +1,7 @@
+.placed-objective {
+    position: absolute;
+    border: 2px dashed red;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+}
