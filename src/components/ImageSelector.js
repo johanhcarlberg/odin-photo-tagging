@@ -4,6 +4,7 @@ import '../styles/ImageSelector.css';
 import { collection, getDocs, where, query, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 import ObjectivesList from "./ObjectivesList";
+import useObjectives from "../effects/useObjectives";
 
 const ImageSelector = ({images, onConfirm}) => {
     const [currentImage, setCurrentImage] = useState(null);
@@ -72,6 +73,9 @@ const ImageSelector = ({images, onConfirm}) => {
             );
         }
     }, [images]);
+
+    const objectives = useObjectives(currentImage);
+
     return (
         <div className="image-selector">
             <button 
@@ -83,8 +87,8 @@ const ImageSelector = ({images, onConfirm}) => {
             <button 
             onClick={nextImage}
             disabled={images.length <= 1}>Next</button>
-            {currentImage && 
-                <ObjectivesList image={currentImage} />
+            {objectives.length > 0 && 
+                <ObjectivesList objectives={objectives} />
             }
             <button
                 className="confirm-button"
