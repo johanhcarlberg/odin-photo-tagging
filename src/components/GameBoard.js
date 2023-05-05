@@ -35,10 +35,17 @@ const GameBoard = ({ image }) => {
     };
 
     const onObjectivePick = (objective) => {
-        console.log(objective);
+        const placedObjective = {...objective, ...mousePos};
+        if (placedObjectives.find(obj => obj.name === placedObjective.name)) {
+            const filteredObjectives = placedObjectives.filter(obj => obj.name != placedObjective.name);
+            setPlacedObjectives([...filteredObjectives, placedObjective]);
+        } else {
+            setPlacedObjectives(prevState => [...prevState, placedObjective]);
+        }
     };
 
     const objectives = useObjectives(image);
+    const [placedObjectives, setPlacedObjectives] = useState([]);
 
     return (
         <div className="game-board">
