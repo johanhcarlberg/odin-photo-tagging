@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/GameBoard.css";
 import Reticle from "./Reticle";
 import ObjectivesList from "./ObjectivesList";
 import useObjectives from "../effects/useObjectives";
 import ObjectivePicker from "./ObjectivePicker";
+import PlacedObjective from "./PlacedObjective";
 
 const GameBoard = ({ image }) => {
     const [showReticle, setShowReticle] = useState(true);
@@ -21,7 +22,9 @@ const GameBoard = ({ image }) => {
 
     const updateMousePos = (e) => {
         if (!showObjectivePicker) {
-            setMousePos({ x: e.clientX, y: e.clientY });
+            let x = e.clientX;
+            let y = e.clientY;
+            setMousePos({ x: x, y: y });
         }
     };
 
@@ -35,7 +38,13 @@ const GameBoard = ({ image }) => {
     };
 
     const onObjectivePick = (objective) => {
-        const placedObjective = {...objective, ...mousePos};
+        if (!gameBoardImageRef.current) {
+            return;
+        }
+        const bounds = gameBoardImageRef.current.getBoundingClientRect();
+        const xOffset = mousePos.x - bounds.left;
+        const yOffset = mousePos.y - bounds.top;
+        const placedObjective = {...objective, x: xOffset, y: yOffset};
         if (placedObjectives.find(obj => obj.name === placedObjective.name)) {
             const filteredObjectives = placedObjectives.filter(obj => obj.name != placedObjective.name);
             setPlacedObjectives([...filteredObjectives, placedObjective]);
@@ -47,10 +56,13 @@ const GameBoard = ({ image }) => {
     const objectives = useObjectives(image);
     const [placedObjectives, setPlacedObjectives] = useState([]);
 
+    const gameBoardImageRef = useRef();
+
     return (
         <div className="game-board">
             <div
                 className="game-board-image"
+                ref={gameBoardImageRef}
                 style={{
                     backgroundImage: image && `url(images/${image.imageName})`,
                     cursor: showObjectivePicker && "default",
@@ -68,6 +80,11 @@ const GameBoard = ({ image }) => {
                         onObjectivePick={onObjectivePick}
                     />
                 )}
+                {placedObjectives.length > 0 && 
+                    placedObjectives.map(objective => {
+                        return <PlacedObjective key={objective.name} objective={objective} gameBoardImageRef={gameBoardImageRef} />
+                    })
+                }
             </div>
             <div className="game-board-objectives">
                 <ObjectivesList objectives={objectives} />
