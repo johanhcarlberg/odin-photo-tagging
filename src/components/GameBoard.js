@@ -3,10 +3,12 @@ import "../styles/GameBoard.css";
 import Reticle from "./Reticle";
 import ObjectivesList from "./ObjectivesList";
 import useObjectives from "../effects/useObjectives";
+import ObjectivePicker from "./ObjectivePicker";
 
 const GameBoard = ({ image }) => {
     const [showReticle, setShowReticle] = useState(true);
     const [mousePos, setMousePos] = useState({x: 0, y: 0});
+    const [showObjectivePicker, setShowObjectivePicker] = useState(false);
 
     useEffect(() => {
         const loadImage = () => {
@@ -38,12 +40,15 @@ const GameBoard = ({ image }) => {
                 className="game-board-image"
                 style={{
                     backgroundImage: image && `url(images/${image.imageName})`,
+                    cursor: showObjectivePicker && 'default',
                 }}
                 onMouseMove={updateMousePos}
                 onMouseLeave={hideReticle}
                 onMouseEnter={unhideReticle}
+                onClick={() => setShowObjectivePicker(!showObjectivePicker)}
             >
-                {showReticle && <Reticle x={mousePos.x} y={mousePos.y}/>}
+                {(showReticle && !showObjectivePicker) && <Reticle x={mousePos.x} y={mousePos.y}/>}
+                {showObjectivePicker && <ObjectivePicker objectives={objectives} position={mousePos}/>}
             </div>
             <div className="game-board-objectives">
                 <ObjectivesList objectives={objectives} />
