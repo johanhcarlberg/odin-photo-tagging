@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "../styles/GameBoard.css";
 import Reticle from "./Reticle";
+import ObjectivesList from "./ObjectivesList";
+import useObjectives from "../effects/useObjectives";
 
 const GameBoard = ({ image }) => {
     const [showReticle, setShowReticle] = useState(true);
@@ -28,6 +30,8 @@ const GameBoard = ({ image }) => {
         setShowReticle(true);
     }
 
+    const objectives = useObjectives(image);
+
     return (
         <div className="game-board">
             <div
@@ -42,7 +46,7 @@ const GameBoard = ({ image }) => {
                 {showReticle && <Reticle x={mousePos.x} y={mousePos.y}/>}
             </div>
             <div className="game-board-objectives">
-                <h3>Objectives</h3>
+                <ObjectivesList objectives={objectives} />
             </div>
         </div>
     );
