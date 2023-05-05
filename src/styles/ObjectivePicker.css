@@ -4,6 +4,7 @@
     display: grid;
     background-color: #eee;
     padding: 0;
+    z-index: 3;
 }
 
 .objective-picker li {
