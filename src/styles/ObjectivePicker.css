@@ -1,0 +1,5 @@
+.objective-picker {
+    position: absolute;
+    list-style: none;
+    display: grid;
+}
