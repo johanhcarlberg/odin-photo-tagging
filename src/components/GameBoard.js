@@ -44,12 +44,14 @@ const GameBoard = ({ image }) => {
         const bounds = gameBoardImageRef.current.getBoundingClientRect();
         const xOffset = mousePos.x - bounds.left;
         const yOffset = mousePos.y - bounds.top;
-        const placedObjective = {...objective, x: xOffset, y: yOffset};
-        if (placedObjectives.find(obj => obj.name === placedObjective.name)) {
-            const filteredObjectives = placedObjectives.filter(obj => obj.name != placedObjective.name);
+        const placedObjective = { ...objective, x: xOffset, y: yOffset };
+        if (placedObjectives.find((obj) => obj.name === placedObjective.name)) {
+            const filteredObjectives = placedObjectives.filter(
+                (obj) => obj.name != placedObjective.name
+            );
             setPlacedObjectives([...filteredObjectives, placedObjective]);
         } else {
-            setPlacedObjectives(prevState => [...prevState, placedObjective]);
+            setPlacedObjectives((prevState) => [...prevState, placedObjective]);
         }
     };
 
@@ -57,6 +59,10 @@ const GameBoard = ({ image }) => {
     const [placedObjectives, setPlacedObjectives] = useState([]);
 
     const gameBoardImageRef = useRef();
+
+    const allObjectivesPlaced = () => {
+        return objectives.length === placedObjectives.length;
+    };
 
     return (
         <div className="game-board">
@@ -70,7 +76,13 @@ const GameBoard = ({ image }) => {
                 onMouseMove={updateMousePos}
                 onMouseLeave={hideReticle}
                 onMouseEnter={unhideReticle}
-                onClick={() => setShowObjectivePicker(!showObjectivePicker)}
+                onClick={(e) => {
+                    if (e.target === e.currentTarget) {
+                        setShowObjectivePicker(!showObjectivePicker);
+                    } else {
+                        setShowObjectivePicker(false);
+                    }
+                }}
             >
                 {showReticle && <Reticle x={mousePos.x} y={mousePos.y} />}
                 {showObjectivePicker && (
@@ -80,11 +92,25 @@ const GameBoard = ({ image }) => {
                         onObjectivePick={onObjectivePick}
                     />
                 )}
-                {placedObjectives.length > 0 && 
-                    placedObjectives.map(objective => {
-                        return <PlacedObjective key={objective.name} objective={objective} gameBoardImageRef={gameBoardImageRef} />
-                    })
-                }
+                {placedObjectives.length > 0 &&
+                    placedObjectives.map((objective) => {
+                        return (
+                            <PlacedObjective
+                                key={objective.name}
+                                objective={objective}
+                                gameBoardImageRef={gameBoardImageRef}
+                            />
+                        );
+                    })}
+                {allObjectivesPlaced() && (
+                    <button
+                        onMouseEnter={hideReticle}
+                        onMouseLeave={unhideReticle}
+                        className="show-results-button"
+                    >
+                        Show Results
+                    </button>
+                )}
             </div>
             <div className="game-board-objectives">
                 <ObjectivesList objectives={objectives} />
