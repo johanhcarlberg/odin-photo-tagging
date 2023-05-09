@@ -5,11 +5,13 @@ import ObjectivesList from "./ObjectivesList";
 import useObjectives from "../effects/useObjectives";
 import ObjectivePicker from "./ObjectivePicker";
 import PlacedObjective from "./PlacedObjective";
+import Results from "./Results";
 
 const GameBoard = ({ image }) => {
     const [showReticle, setShowReticle] = useState(true);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [showObjectivePicker, setShowObjectivePicker] = useState(false);
+    const [showResults, setShowResults] = useState(false);
 
     useEffect(() => {
         const loadImage = () => {
@@ -64,6 +66,10 @@ const GameBoard = ({ image }) => {
         return objectives.length === placedObjectives.length;
     };
 
+    const onShowResults = () => {
+        setShowResults(true);
+    }
+
     return (
         <div className="game-board">
             <div
@@ -106,12 +112,16 @@ const GameBoard = ({ image }) => {
                     <button
                         onMouseEnter={hideReticle}
                         onMouseLeave={unhideReticle}
-                        className="show-results-button"
+                        onClick={() => onShowResults()}
+                        className="show-results-button primary-button"
                     >
                         Show Results
                     </button>
                 )}
             </div>
+            {showResults && 
+                <Results placedObjectives={placedObjectives} />
+            }
             <div className="game-board-objectives">
                 <ObjectivesList objectives={objectives} />
             </div>
