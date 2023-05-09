@@ -2,3 +2,21 @@
   height: 100vh;
   display: grid;
 }
+
+.primary-button {
+  border: none;
+  padding: 1rem 2rem;
+  background-color: rgb(58, 166, 255);
+  border-bottom: 4px solid rgb(49, 122, 172);
+  font-size: .9rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.primary-button:hover {
+  background-color: rgb(91, 181, 255);
+}
+
+.primary-button:active {
+  background-color: rgb(78, 160, 214);
+}
