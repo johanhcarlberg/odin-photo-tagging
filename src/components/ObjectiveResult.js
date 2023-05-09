@@ -34,11 +34,26 @@ const ObjectiveResult = ({ image, objective }) => {
         loadBounds();
     }, []);
 
+    const isWithinBounds = () => {
+        if (!bounds || !bounds.left) {
+            return false;
         }
 
-    return (
-        <div className="objective-result"></div>
-    )
-}
+        if (objective.x < bounds.left || objective.x > bounds.right) {
+            return false;
+        }
+
+        if (objective.y < bounds.top || objective.y > bounds.bottom) {
+            return false;
+        }
+
+        return true;
+    }
+
+    return <div className="objective-result">
+        <p>{objective.name}</p>
+        <p>{isWithinBounds() ? 'True' : 'False'}</p>
+    </div>;
+};
 
 export default ObjectiveResult;
