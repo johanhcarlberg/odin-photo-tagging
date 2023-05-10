@@ -1,0 +1,13 @@
+.objective-result {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-content: center;
+}
+
+.objective-result p {
+    margin: 0;
+}
+
+.objective-result-check {
+    justify-self: center;
+}
