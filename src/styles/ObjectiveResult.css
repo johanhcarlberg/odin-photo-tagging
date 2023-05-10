@@ -1,13 +1,20 @@
 .objective-result {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     align-content: center;
 }
 
 .objective-result p {
+    display: grid;
     margin: 0;
+    justify-self: center;
+    align-content: center;
 }
 
-.objective-result-check {
-    justify-self: center;
+.objective-result-true {
+    color: rgb(85, 218, 85);
+}
+
+.objective-result-false {
+    color: rgb(245, 83, 83);
 }
