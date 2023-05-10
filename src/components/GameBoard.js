@@ -12,6 +12,7 @@ const GameBoard = ({ image }) => {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [showObjectivePicker, setShowObjectivePicker] = useState(false);
     const [showResults, setShowResults] = useState(false);
+    const [placedObjectives, setPlacedObjectives] = useState([]);
 
     useEffect(() => {
         const loadImage = () => {
@@ -31,7 +32,6 @@ const GameBoard = ({ image }) => {
     };
 
     const hideReticle = () => {
-        console.log("hide reticle");
         setShowReticle(false);
     };
 
@@ -58,7 +58,6 @@ const GameBoard = ({ image }) => {
     };
 
     const objectives = useObjectives(image);
-    const [placedObjectives, setPlacedObjectives] = useState([]);
 
     const gameBoardImageRef = useRef();
 
@@ -68,7 +67,12 @@ const GameBoard = ({ image }) => {
 
     const onShowResults = () => {
         setShowResults(true);
-    }
+    };
+
+    const onTryAgain = () => {
+        setPlacedObjectives([]);
+        setShowResults(false);
+    };
 
     return (
         <div className="game-board">
@@ -83,7 +87,10 @@ const GameBoard = ({ image }) => {
                 onMouseLeave={hideReticle}
                 onMouseEnter={unhideReticle}
                 onClick={(e) => {
-                    if (e.target === e.currentTarget) {
+                    if (
+                        e.target === e.currentTarget ||
+                        e.target.className === "placed-objective"
+                    ) {
                         setShowObjectivePicker(!showObjectivePicker);
                     } else {
                         setShowObjectivePicker(false);
@@ -119,9 +126,13 @@ const GameBoard = ({ image }) => {
                     </button>
                 )}
             </div>
-            {showResults && 
-                <Results placedObjectives={placedObjectives} />
-            }
+            {showResults && (
+                <Results
+                    placedObjectives={placedObjectives}
+                    image={image}
+                    onTryAgain={onTryAgain}
+                />
+            )}
             <div className="game-board-objectives">
                 <ObjectivesList objectives={objectives} />
             </div>
