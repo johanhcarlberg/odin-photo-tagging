@@ -22,3 +22,7 @@
     margin: 0 auto;
     bottom: 16%;
   }
+
+  .game-board-objectives {
+    padding: 0 2rem;
+  }
