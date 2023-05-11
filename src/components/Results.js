@@ -1,7 +1,7 @@
 import "../styles/Results.css";
 import ObjectiveResult from "./ObjectiveResult";
 
-const Results = ({ placedObjectives, image, onTryAgain }) => {
+const Results = ({ placedObjectives, image, onTryAgain, onSelectNewImage }) => {
     return (
         <div className="results-wrapper">
             <div className="results-modal">
@@ -16,7 +16,7 @@ const Results = ({ placedObjectives, image, onTryAgain }) => {
                     ))}
                 </div>
                 <button className="primary-button" onClick={onTryAgain}>Try Again</button>
-                <button className="primary-button">Select new image</button>
+                <button className="primary-button" onClick={onSelectNewImage}>Select new image</button>
             </div>
         </div>
     );

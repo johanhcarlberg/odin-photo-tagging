@@ -12,6 +12,11 @@ const Game = () => {
         setGameState('gamePlaying')
         setSelectedImage(image);
     }
+
+    const onSelectNewImage = () => {
+        setGameState('gameStart');
+    }
+    
     return (
         <div className="game-main">
             {gameState === 'gameStart' &&
@@ -19,7 +24,7 @@ const Game = () => {
             }
 
             {gameState === 'gamePlaying' &&
-                <GameBoard image={selectedImage}/>
+                <GameBoard image={selectedImage} onSelectNewImage={onSelectNewImage}/>
             }
         </div>
     )

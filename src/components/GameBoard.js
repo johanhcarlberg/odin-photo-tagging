@@ -7,7 +7,7 @@ import ObjectivePicker from "./ObjectivePicker";
 import PlacedObjective from "./PlacedObjective";
 import Results from "./Results";
 
-const GameBoard = ({ image }) => {
+const GameBoard = ({ image, onSelectNewImage }) => {
     const [showReticle, setShowReticle] = useState(true);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [showObjectivePicker, setShowObjectivePicker] = useState(false);
@@ -46,6 +46,7 @@ const GameBoard = ({ image }) => {
         const bounds = gameBoardImageRef.current.getBoundingClientRect();
         const xOffset = mousePos.x - bounds.left;
         const yOffset = mousePos.y - bounds.top;
+        console.log(xOffset, yOffset);
         const placedObjective = { ...objective, x: xOffset, y: yOffset };
         if (placedObjectives.find((obj) => obj.name === placedObjective.name)) {
             const filteredObjectives = placedObjectives.filter(
@@ -73,7 +74,7 @@ const GameBoard = ({ image }) => {
         setPlacedObjectives([]);
         setShowResults(false);
     };
-
+    
     return (
         <div className="game-board">
             <div
@@ -131,6 +132,7 @@ const GameBoard = ({ image }) => {
                     placedObjectives={placedObjectives}
                     image={image}
                     onTryAgain={onTryAgain}
+                    onSelectNewImage={onSelectNewImage}
                 />
             )}
             <div className="game-board-objectives">
