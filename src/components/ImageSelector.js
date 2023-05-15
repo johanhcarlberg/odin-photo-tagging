@@ -73,6 +73,7 @@ const ImageSelector = ({ images, onConfirm }) => {
             )}
             <button
                 className="previous-image-button"
+                aria-label="previous-image-button"
                 onClick={prevImage}
                 disabled={images.length <= 1}
             >
@@ -80,6 +81,7 @@ const ImageSelector = ({ images, onConfirm }) => {
             </button>
             <div
                 className="current-image"
+                aria-label="current-image"
                 style={{
                     backgroundImage:
                         currentImage && `url(images/${currentImage.imageName})`,
@@ -87,6 +89,7 @@ const ImageSelector = ({ images, onConfirm }) => {
             ></div>
             <button
                 className="next-image-button"
+                aria-label="next-image-button"
                 onClick={nextImage}
                 disabled={images.length <= 1}
             >
@@ -97,6 +100,7 @@ const ImageSelector = ({ images, onConfirm }) => {
             )}
             <button
                 className="confirm-button primary-button"
+                aria-label="confirm-button"
                 disabled={!currentImage}
                 onClick={() => onConfirm(currentImage)}
             >
