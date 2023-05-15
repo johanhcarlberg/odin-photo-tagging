@@ -11,6 +11,7 @@
   font-size: .9rem;
   color: #fff;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .primary-button:hover {
