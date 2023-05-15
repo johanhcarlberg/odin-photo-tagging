@@ -95,7 +95,7 @@ const ImageSelector = ({ images, onConfirm }) => {
                 <ObjectivesList objectives={objectives} />
             )}
             <button
-                className="confirm-button"
+                className="confirm-button primary-button"
                 disabled={!currentImage}
                 onClick={() => onConfirm(currentImage)}
             >
