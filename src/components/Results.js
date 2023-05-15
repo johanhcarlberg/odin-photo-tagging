@@ -15,8 +15,20 @@ const Results = ({ placedObjectives, image, onTryAgain, onSelectNewImage }) => {
                         />
                     ))}
                 </div>
-                <button className="primary-button" onClick={onTryAgain}>Try Again</button>
-                <button className="primary-button" onClick={onSelectNewImage}>Select new image</button>
+                <button
+                    className="primary-button"
+                    aria-label="try-again-button"
+                    onClick={onTryAgain}
+                >
+                    Try Again
+                </button>
+                <button
+                    className="primary-button"
+                    aria-label="select-new-image-button"
+                    onClick={onSelectNewImage}
+                >
+                    Select new image
+                </button>
             </div>
         </div>
     );
