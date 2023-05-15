@@ -25,4 +25,6 @@
 
   .game-board-objectives {
     padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
   }
