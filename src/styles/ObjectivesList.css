@@ -14,3 +14,9 @@
     margin: 0;
     grid-row: 2;
 }
+
+.objectives-list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
