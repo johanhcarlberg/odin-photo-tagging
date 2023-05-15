@@ -2,7 +2,7 @@
     display: grid;
     padding: 2rem;
     justify-self: center;
-    width: 40rem;
+    width: 800px;
     grid-template-rows: auto 1fr;
     box-sizing: border-box;
 }

@@ -5,6 +5,7 @@ import { collection, getDocs, where, query, doc } from "firebase/firestore";
 import { db } from "../firebase";
 import ObjectivesList from "./ObjectivesList";
 import useObjectives from "../effects/useObjectives";
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 
 const ImageSelector = ({ images, onConfirm }) => {
     const [currentImage, setCurrentImage] = useState(null);
@@ -75,7 +76,7 @@ const ImageSelector = ({ images, onConfirm }) => {
                 onClick={prevImage}
                 disabled={images.length <= 1}
             >
-                Prev
+                <FaArrowLeft />
             </button>
             <div
                 className="current-image"
@@ -89,7 +90,7 @@ const ImageSelector = ({ images, onConfirm }) => {
                 onClick={nextImage}
                 disabled={images.length <= 1}
             >
-                Next
+                <FaArrowRight />
             </button>
             {objectives.length > 0 && (
                 <ObjectivesList objectives={objectives} />
