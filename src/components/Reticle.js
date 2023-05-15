@@ -15,6 +15,7 @@ const Reticle = ({x, y}) => {
     }, [])
     return (
         <div 
+        aria-label='reticle'
         ref={reticleRef}
         className="reticle"
         style={{top: `${y - dimensions.heigth / 2}px`, left: `${x - dimensions.width / 2}px`}}
