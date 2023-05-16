@@ -10,7 +10,6 @@ const ObjectiveResult = ({ image, objective }) => {
         const loadBounds = async () => {
             try {
                 const path = `images/${image.name}/objectives/${objective.id}/bounds`;
-                console.log(path);
                 const querySnapshot = await getDocs(collection(db, path));
                 if (querySnapshot.docs.length === 0) {
                     return;

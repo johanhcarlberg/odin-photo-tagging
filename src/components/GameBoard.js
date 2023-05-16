@@ -46,7 +46,6 @@ const GameBoard = ({ image, onSelectNewImage }) => {
         const bounds = gameBoardImageRef.current.getBoundingClientRect();
         const xOffset = mousePos.x - bounds.left;
         const yOffset = mousePos.y - bounds.top;
-        console.log(xOffset, yOffset);
         const placedObjective = { ...objective, x: xOffset, y: yOffset };
         if (placedObjectives.find((obj) => obj.name === placedObjective.name)) {
             const filteredObjectives = placedObjectives.filter(
