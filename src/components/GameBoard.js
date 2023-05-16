@@ -74,11 +74,12 @@ const GameBoard = ({ image, onSelectNewImage }) => {
         setPlacedObjectives([]);
         setShowResults(false);
     };
-    
+
     return (
         <div className="game-board">
             <div
                 className="game-board-image"
+                aria-label="game-board-image"
                 ref={gameBoardImageRef}
                 style={{
                     backgroundImage: image && `url(images/${image.imageName})`,
@@ -120,6 +121,7 @@ const GameBoard = ({ image, onSelectNewImage }) => {
                     <button
                         onMouseEnter={hideReticle}
                         onMouseLeave={unhideReticle}
+                        aria-label="show-results-button"
                         onClick={() => onShowResults()}
                         className="show-results-button primary-button"
                     >
