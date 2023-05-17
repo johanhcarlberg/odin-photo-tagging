@@ -18,7 +18,7 @@
     display: grid;
     justify-content: center;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
     grid-template-columns: auto auto;
     column-gap: 1rem;
 }
@@ -27,6 +27,7 @@
     grid-row: 1;
     grid-column: 1 / -1;
     justify-self: center;
+    margin-bottom: .1rem;
 }
 
 .results-content {
@@ -37,3 +38,8 @@
     margin-bottom: 1.5rem;
 }
 
+.time-elapsed {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 0;
+}
