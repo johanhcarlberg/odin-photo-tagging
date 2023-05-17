@@ -2,6 +2,10 @@ import { getByRole, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Results from "./Results";
 
+jest.mock('../effects/useTime', () => () => {
+    return new Date(1684343513483);
+})
+
 it("renders", () => {
     const placedObjectives = [];
     const image = {};
@@ -43,3 +47,16 @@ it("can click select new image button", async () => {
     await user.click(selectNewImageButton);
     expect(onSelectNewImage).toBeCalled();
 });
+
+it("displays time", () => {
+    const placedObjectives = [];
+    const image = {};
+    const onTryAgain = jest.fn();
+    const onSelectNewImage = jest.fn();
+    const startTime = 1684343500358;
+    const expectedTime = 13.125;
+    const props = { placedObjectives, image, onTryAgain, onSelectNewImage, startTime };
+    render(<Results {...props} />);
+
+    screen.getByText(`Time elapsed: ${expectedTime}s`);
+})
