@@ -60,3 +60,18 @@ it("displays time", () => {
 
     screen.getByText(`Time elapsed: ${expectedTime}s`);
 })
+
+it("displays highscore input", async () => {
+    const placedObjectives = [];
+    const image = {};
+    const onTryAgain = jest.fn();
+    const onSelectNewImage = jest.fn();
+    const startTime = 1684343500358;
+    const user = userEvent.setup();
+    const props = { placedObjectives, image, onTryAgain, onSelectNewImage, startTime };
+    render(<Results {...props} />);
+
+    const highscoreInput = screen.getByLabelText('highscore-name');
+    await user.type(highscoreInput, 'test');
+    expect(highscoreInput.value).toBe('test');
+})
