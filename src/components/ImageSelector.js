@@ -53,7 +53,7 @@ const ImageSelector = ({ images, onConfirm }) => {
     useEffect(() => {
         for (let image of images) {
             const img = new Image();
-            img.src = `/images/${image.imageName}`;
+            img.src = `${process.env.PUBLIC_URL}/images/${image.imageName}`;
         }
 
         if (images.length > 0) {
@@ -84,7 +84,7 @@ const ImageSelector = ({ images, onConfirm }) => {
                 aria-label="current-image"
                 style={{
                     backgroundImage:
-                        currentImage && `url(images/${currentImage.imageName})`,
+                        currentImage && `url(${process.env.PUBLIC_URL}/images/${currentImage.imageName})`,
                 }}
             ></div>
             <button

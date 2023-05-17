@@ -13,15 +13,21 @@ const GameBoard = ({ image, onSelectNewImage }) => {
     const [showObjectivePicker, setShowObjectivePicker] = useState(false);
     const [showResults, setShowResults] = useState(false);
     const [placedObjectives, setPlacedObjectives] = useState([]);
+    const [startTime, setStartTime] = useState(null);
 
     useEffect(() => {
         const loadImage = () => {
             const tempImg = new Image();
-            tempImg.src = `images/${image.imageName}`;
+            tempImg.src = `${process.env.PUBLIC_URL}/images/${image.imageName}`;
         };
 
         loadImage();
     }, [image]);
+
+    useEffect(() => {
+        const date = new Date();
+        setStartTime(date.getTime());
+    }, []);
 
     const updateMousePos = (e) => {
         if (!showObjectivePicker) {
@@ -81,7 +87,7 @@ const GameBoard = ({ image, onSelectNewImage }) => {
                 aria-label="game-board-image"
                 ref={gameBoardImageRef}
                 style={{
-                    backgroundImage: image && `url(images/${image.imageName})`,
+                    backgroundImage: image && `url(${process.env.PUBLIC_URL}/images/${image.imageName})`,
                     cursor: showObjectivePicker && "default",
                 }}
                 onMouseMove={updateMousePos}
