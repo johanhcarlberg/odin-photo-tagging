@@ -1,10 +1,8 @@
 import "../styles/Results.css";
 import ObjectiveResult from "./ObjectiveResult";
 import useTime from "../effects/useTime";
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
 import useObjectiveResults from "../effects/useObjectiveResults";
+import HighscoreSubmit from "./HighscoreSubmit";
 
 const Results = ({
     placedObjectives,
@@ -13,13 +11,15 @@ const Results = ({
     onSelectNewImage,
     startTime,
 }) => {
-    const [highscoreName, setHighscoreName] = useState("");
     const endTime = useTime();
     const timeToDisplay = (endTime - startTime) / 1000;
     const [objectiveResults, isLoading] = useObjectiveResults(
         image,
         placedObjectives
     );
+    const onHighscoreSubmit = () => {
+        console.log('submit highscore');
+    }
 
     return (
         <div className="results-wrapper">
@@ -40,21 +40,7 @@ const Results = ({
                 
                 {(objectiveResults.filter((obj) => obj.result === true)
                     .length === placedObjectives.length && placedObjectives.length > 0) && (
-                    <div className="highscore-entry">
-                        <label
-                            htmlFor="highscore-name"
-                            className="highscore-name-label"
-                        >
-                            Highscore name
-                        </label>
-                        <input
-                            name="highscore-name"
-                            aria-label="highscore-name"
-                            className="highscore-name"
-                            value={highscoreName}
-                            onChange={(e) => setHighscoreName(e.target.value)}
-                        />
-                    </div>
+                    <HighscoreSubmit onSubmit={onHighscoreSubmit}/>
                 )}
 
                 <button
