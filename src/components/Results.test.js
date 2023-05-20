@@ -6,6 +6,10 @@ jest.mock('../effects/useTime', () => () => {
     return new Date(1684343513483);
 })
 
+jest.mock('../effects/useObjectiveResults', () => () => {
+    return [[{id: 1, name: 'Test', result: true}], false]
+})
+
 it("renders", () => {
     const placedObjectives = [];
     const image = {};
@@ -62,7 +66,7 @@ it("displays time", () => {
 })
 
 it("displays highscore input", async () => {
-    const placedObjectives = [];
+    const placedObjectives = [{id: 1, name: 'Test'}];
     const image = {};
     const onTryAgain = jest.fn();
     const onSelectNewImage = jest.fn();
