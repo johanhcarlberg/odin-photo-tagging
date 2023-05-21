@@ -2,13 +2,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-content: center;
+    gap: 1rem;
 }
 
 .objective-result p {
     display: grid;
     margin: 0;
-    justify-self: center;
     align-content: center;
+    justify-self: center;
 }
 
 .objective-result-true {
@@ -17,4 +18,12 @@
 
 .objective-result-false {
     color: rgb(245, 83, 83);
+}
+
+.objective-result-name {
+    justify-self: end;
+}
+
+.objective-result-check {
+    justify-self: start;
 }
