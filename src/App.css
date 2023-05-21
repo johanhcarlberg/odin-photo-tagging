@@ -21,3 +21,10 @@
 .primary-button:active {
   background-color: rgb(78, 160, 214);
 }
+
+.primary-button:disabled {
+  background-color: rgb(128, 160, 180);
+  border-bottom: 4px solid rgb(111, 133, 146);
+  cursor: default;
+  color: #ffffffd3;
+}
