@@ -6,6 +6,7 @@ import useObjectives from "../effects/useObjectives";
 import ObjectivePicker from "./ObjectivePicker";
 import PlacedObjective from "./PlacedObjective";
 import Results from "./Results";
+import useTime from "../effects/useTime";
 
 const GameBoard = ({ image, onSelectNewImage }) => {
     const [showReticle, setShowReticle] = useState(true);
@@ -13,7 +14,6 @@ const GameBoard = ({ image, onSelectNewImage }) => {
     const [showObjectivePicker, setShowObjectivePicker] = useState(false);
     const [showResults, setShowResults] = useState(false);
     const [placedObjectives, setPlacedObjectives] = useState([]);
-    const [startTime, setStartTime] = useState(null);
 
     useEffect(() => {
         const loadImage = () => {
@@ -24,10 +24,7 @@ const GameBoard = ({ image, onSelectNewImage }) => {
         loadImage();
     }, [image]);
 
-    useEffect(() => {
-        const date = new Date();
-        setStartTime(date.getTime());
-    }, []);
+    const startTime = useTime();
 
     const updateMousePos = (e) => {
         if (!showObjectivePicker) {
@@ -139,6 +136,7 @@ const GameBoard = ({ image, onSelectNewImage }) => {
                     placedObjectives={placedObjectives}
                     image={image}
                     onTryAgain={onTryAgain}
+                    startTime={startTime}
                     onSelectNewImage={onSelectNewImage}
                 />
             )}
