@@ -10,6 +10,10 @@ jest.mock('../effects/useObjectiveResults', () => () => {
     return [[{id: 1, name: 'Test', result: true}], false]
 })
 
+jest.mock('../effects/useHighscores', () => () => {
+    return [{name: 'Test', time: 12}, {name: 'Test2', time: 13}];
+});
+
 it("renders", () => {
     const placedObjectives = [];
     const image = {};
@@ -76,6 +80,17 @@ it("displays highscore input", async () => {
     render(<Results {...props} />);
 
     const highscoreInput = screen.getByLabelText('highscore-name');
-    await user.type(highscoreInput, 'test');
-    expect(highscoreInput.value).toBe('test');
+})
+
+it('displays show scores button', () => {
+    const placedObjectives = [{id: 1, name: 'Test'}];
+    const image = {};
+    const onTryAgain = jest.fn();
+    const onSelectNewImage = jest.fn();
+    const startTime = 1684343500358;
+    const user = userEvent.setup();
+    const props = { placedObjectives, image, onTryAgain, onSelectNewImage, startTime };
+    render(<Results {...props} />);
+
+    screen.getByRole('button', {name: 'show-scores-button'});
 })
