@@ -5,10 +5,13 @@ import { collection, getDocs, where, query, doc } from "firebase/firestore";
 import { db } from "../firebase";
 import ObjectivesList from "./ObjectivesList";
 import useObjectives from "../effects/useObjectives";
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import Highscores from "./Highscores";
+import Modal from "./Modal";
 
-const ImageSelector = ({ images, onConfirm }) => {
+const ImageSelector = ({ images, onConfirm, onShowScoresClick }) => {
     const [currentImage, setCurrentImage] = useState(null);
+    const [showHighscores, setShowHighscores] = useState(false);
 
     const nextImage = () => {
         if (images.length <= 1) {
@@ -84,7 +87,8 @@ const ImageSelector = ({ images, onConfirm }) => {
                 aria-label="current-image"
                 style={{
                     backgroundImage:
-                        currentImage && `url(${process.env.PUBLIC_URL}/images/${currentImage.imageName})`,
+                        currentImage &&
+                        `url(${process.env.PUBLIC_URL}/images/${currentImage.imageName})`,
                 }}
             ></div>
             <button
@@ -98,14 +102,31 @@ const ImageSelector = ({ images, onConfirm }) => {
             {objectives.length > 0 && (
                 <ObjectivesList objectives={objectives} />
             )}
-            <button
-                className="confirm-button primary-button"
-                aria-label="confirm-button"
-                disabled={!currentImage}
-                onClick={() => onConfirm(currentImage)}
-            >
-                Confirm
-            </button>
+            <div className="buttons">
+                <button
+                    className="confirm-button primary-button"
+                    aria-label="confirm-button"
+                    disabled={!currentImage}
+                    onClick={() => onConfirm(currentImage)}
+                >
+                    Confirm
+                </button>
+                <button
+                    className="show-highscores-button primary-button"
+                    aria-label="show-highscores-button"
+                    onClick={() => setShowHighscores(true)}
+                >
+                    Show High Scores
+                </button>
+            </div>
+            {showHighscores && (
+                <Modal>
+                    <Highscores
+                        image={currentImage}
+                        onClose={() => setShowHighscores(false)}
+                    />
+                </Modal>
+            )}
         </div>
     );
 };
