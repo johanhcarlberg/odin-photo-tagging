@@ -1,6 +1,7 @@
 import { useState } from "react";
+import "../styles/HighscoreSubmit.css";
 
-const HighscoreSubmit = ({onSubmit}) => {
+const HighscoreSubmit = ({ onSubmit, submitDisabled }) => {
     const [highscoreName, setHighscoreName] = useState("");
 
     return (
@@ -16,9 +17,9 @@ const HighscoreSubmit = ({onSubmit}) => {
                 onChange={(e) => setHighscoreName(e.target.value)}
             />
             <button
-                className="highscore-submit"
-                disabled={highscoreName.length === 0}
-                onClick={onSubmit}
+                className="highscore-submit primary-button"
+                disabled={highscoreName.length === 0 || submitDisabled === true}
+                onClick={(e) => onSubmit(highscoreName)}
             >
                 Submit
             </button>
