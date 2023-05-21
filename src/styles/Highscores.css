@@ -1,0 +1,48 @@
+.highscores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.highscores h2 {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+.close-button-corner {
+    position: absolute;
+    z-index: 2;
+    top: 1rem;
+    right: 1rem;
+}
+
+.highscores-item, .highscores-header {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: center;
+}
+
+.highscores-header {
+    font-weight: bold;
+
+}
+
+.highscores-header p {
+    margin: 0;
+}
+
+.highscore-item-name {
+    grid-column: 1;
+    margin: 0;
+}
+
+.highscore-item-time {
+    grid-column: 2;
+    margin: 0;
+}
+
+.close-button {
+    grid-column: 1 / -1;
+    margin-top: 2rem;
+    justify-self: center;
+}
