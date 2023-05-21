@@ -1,4 +1,5 @@
 .highscores {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -11,8 +12,8 @@
 .close-button-corner {
     position: absolute;
     z-index: 2;
-    top: 1rem;
-    right: 1rem;
+    top: .2rem;
+    right: .2rem;
 }
 
 .highscores-item, .highscores-header {
