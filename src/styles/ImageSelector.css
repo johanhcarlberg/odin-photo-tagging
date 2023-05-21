@@ -48,10 +48,12 @@
     grid-column: 3;
 }
 
-.confirm-button {
+.buttons {
     grid-row: 3;
     grid-column: 1 / -1;
-    justify-self: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: center; 
 }
 
 .current-image-name {
