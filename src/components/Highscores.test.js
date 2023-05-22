@@ -30,10 +30,10 @@ it("renders", () => {
 
 it("shows highscores", () => {
     render(<Highscores />);
-    screen.getByText("Test");
+    screen.getByText(/([1-9][0-9]?)\. Test$/);
     screen.getByText("12s");
 
-    screen.getByText("Test2");
+    screen.getByText(/([1-9][0-9]?)\. Test2$/);
     screen.getByText("13s");
 });
 
