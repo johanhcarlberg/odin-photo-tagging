@@ -12,15 +12,13 @@ const useHighscores = (image) => {
                 if (querySnapshot.docs.length === 0) {
                     return;
                 }
-                const highscoresData = querySnapshot.docs.map((doc) =>
-                    {
-                        const data = doc.data();
-                        return {id: doc.id, ...data};
-                    }
-                );
+                const highscoresData = querySnapshot.docs.map((doc) => {
+                    const data = doc.data();
+                    return { id: doc.id, ...data };
+                });
                 highscoresData.sort();
                 if (highscoresData.length > 10) {
-                    highscoresData.splice(9);
+                    highscoresData.splice(10);
                 }
                 setHighscores(highscoresData);
             } catch (error) {
@@ -31,6 +29,6 @@ const useHighscores = (image) => {
     }, [image]);
 
     return highscores;
-}
+};
 
 export default useHighscores;

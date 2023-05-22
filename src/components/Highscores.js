@@ -17,11 +17,11 @@ const Highscores = ({ image, onClose }) => {
                 <p className="highscore-name-header">Name</p>
                 <p className="highscore-time-header">Time</p>
             </div>
-            {highscores.map((score) => {
+            {highscores.map((score, index) => {
                 return (
                     <div className="highscores-item" key={score.id}>
                         <p className="highscore-item-name">
-                            {score.name || "Unknown"}
+                            {index + 1 + ". " + (score.name || "Unknown")}
                         </p>
                         <p className="highscore-item-time">
                             {score.time + "s"}
